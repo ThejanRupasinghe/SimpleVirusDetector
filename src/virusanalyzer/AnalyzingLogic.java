@@ -45,6 +45,10 @@ public class AnalyzingLogic {
     
     public boolean analyze(String fileChecksum, ArrayList<String> virusDefinitions){
         
+        /** This methods takes the file's md5 checksum and virus definitions ArrayList
+            as inputs, and compares the fileChecksum with each virus checksum to detect
+            whether the file is a virus or not **/
+        
         boolean isVirus = false;
         
         for(int i=0;i<virusDefinitions.size();i++){
@@ -54,7 +58,7 @@ public class AnalyzingLogic {
             }
         }
         
-        return false;
+        return isVirus;
     }
     
 }

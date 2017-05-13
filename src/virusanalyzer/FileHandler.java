@@ -18,28 +18,25 @@ import java.util.ArrayList;
 public class FileHandler {
     
     
-    public ArrayList virusDefinitionReader(){
+    public ArrayList readVirusDefinition(){
         
         /** This method reads the file that includes virus definitions
             (md5 checksum values of identified viruses) and returns an 
             ArrayList of them **/
         
-        String file_name = null;
+        String file_name = "/home/thejan/NetBeansProjects/VirusAnalyzer/src/virusanalyzer/virusDef.txt";
         
         ArrayList<String> virusDefinitions = new ArrayList<String>();
         
         try (BufferedReader br = new BufferedReader(new FileReader(file_name))) {
             
-            StringBuilder sb = new StringBuilder();
             String line = br.readLine();
 
             while (line != null) {
-                sb.append(line);
+                virusDefinitions.add(line);
                 line = br.readLine();
             }
-            
-            virusDefinitions.add(sb.toString());
-            
+                        
             br.close();
             
         } catch(FileNotFoundException e) {

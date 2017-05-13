@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import javax.xml.bind.DatatypeConverter;
 
 /**
@@ -38,11 +39,22 @@ public class AnalyzingLogic {
         }catch (IOException e){
             System.out.println("IO Exception");
         }
-//            assertThat(myChecksum.equals(checksum)).isTrue();
         
         return md5Checksum;
     }
     
-    
+    public boolean analyze(String fileChecksum, ArrayList<String> virusDefinitions){
+        
+        boolean isVirus = false;
+        
+        for(int i=0;i<virusDefinitions.size();i++){
+            if(fileChecksum.equals(virusDefinitions.get(i))){
+                isVirus = true;
+                return isVirus;
+            }
+        }
+        
+        return false;
+    }
     
 }

@@ -30,6 +30,6 @@ NOTE :
 
 	https://www.ikarussecurity.com/fileadmin/user_upload/testviren/eicar_com.zip
   
-   and tested on this virus detector.
+   and can be tested on this virus detector (choose the zip file as file to detect).
 
 

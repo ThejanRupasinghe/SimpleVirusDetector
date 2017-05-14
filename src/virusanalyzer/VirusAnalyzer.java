@@ -17,9 +17,11 @@ import javax.swing.JOptionPane;
  */
 public class VirusAnalyzer {
 
-    /**
-     * @param args the command line arguments
-     */
+    //To store virus definition md5 hashes and their respective names and types
+    public static ArrayList<String> virusDefinitions = new ArrayList<String>();
+    public static ArrayList<String> virusNames = new ArrayList<String>();;
+    public static ArrayList<String> virusTypes = new ArrayList<String>();;
+
     public static void main(String[] args) {
         
         try {
@@ -36,25 +38,29 @@ public class VirusAnalyzer {
             
             //Reading the virus definitions and storing them in a array list
             FileHandler fh = new FileHandler();
-            ArrayList<String> virusDefinitions = fh.readVirusDefinition();
-            
-            if(virusDefinitions!=null){
-                //Taking the result of the analysis
-                boolean isVirus = logic.analyze(fileChecksum, virusDefinitions);
+            boolean ok = fh.readVirusDefinition();
 
-                if(isVirus){
-                    System.out.println("Virus Detected !!");
-                    JOptionPane.showMessageDialog(null, file.getName()+" file contains a virus.\nFile MD5: "+fileChecksum+"\nis found in virus definitions", "Virus Detected !!",JOptionPane.WARNING_MESSAGE);
-                }else{
+            if(ok){
+                //Taking the result of the analysis
+                int index = logic.analyze(fileChecksum, virusDefinitions);
+
+                if(index==-1){
                     System.out.println("Clean File !!");
                     JOptionPane.showMessageDialog(null, file.getName()+" file doesnot contain a virus.\nFile MD5: "+fileChecksum+"\nis not found in virus definitions", "No Virus !!",JOptionPane.INFORMATION_MESSAGE);
+               }else{    
+                    System.out.println("Virus Detected !!");
+                    JOptionPane.showMessageDialog(null, 
+                            file.getName()+" file contains a virus.\n"
+                                    + "File MD5: "+fileChecksum+"\nis found in virus definitions\n"
+                                    + "Virus Name: "+virusNames.get(index)+"\nVirus Type: "+virusTypes.get(index), 
+                            "Virus Detected !!",JOptionPane.WARNING_MESSAGE);
                 }
             }else{
                 System.out.println("virusDef.txt not found. Create virusDef.txt file with your virus definitions in this folder.");
             }
          
         } catch (Exception ex) {
-            System.out.println("IO Exception");
+            System.out.println(ex.toString());
         }
     }
     

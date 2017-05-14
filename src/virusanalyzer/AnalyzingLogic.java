@@ -37,28 +37,28 @@ public class AnalyzingLogic {
         }catch (NoSuchAlgorithmException e){
             System.out.println("Algorithm Exception");
         }catch (IOException e){
-            System.out.println("IO Exception");
+            System.out.println("hey");
         }
         
         return md5Checksum;
     }
     
-    public boolean analyze(String fileChecksum, ArrayList<String> virusDefinitions){
+    public int analyze(String fileChecksum, ArrayList<String> virusDefinitions){
         
         /** This methods takes the file's md5 checksum and virus definitions ArrayList
             as inputs, and compares the fileChecksum with each virus checksum to detect
             whether the file is a virus or not **/
         
-        boolean isVirus = false;
+        int index = -1;
         
         for(int i=0;i<virusDefinitions.size();i++){
             if(fileChecksum.equals(virusDefinitions.get(i))){
-                isVirus = true;
-                return isVirus;
+                index = i;
+                return index;
             }
         }
         
-        return isVirus;
+        return index;
     }
     
 }

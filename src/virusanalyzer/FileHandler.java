@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 public class FileHandler {
     
     
-    public ArrayList readVirusDefinition(){
+    public boolean readVirusDefinition(){
         
         /** This method reads the file that includes virus definitions
             (md5 checksum values of identified viruses) and returns an 
@@ -27,26 +28,27 @@ public class FileHandler {
         //to the virusDef.txt file in the VirusAnalyzer_140536K folder
         String file_name = "virusDef.txt";
         
-        ArrayList<String> virusDefinitions = new ArrayList<String>();
-        
         try (BufferedReader br = new BufferedReader(new FileReader(file_name))) {
             
             String line = br.readLine();
 
             while (line != null) {
-                virusDefinitions.add(line);
+                String[] lineArray = line.split("\\|");
+                VirusAnalyzer.virusDefinitions.add(lineArray[1]);
+                VirusAnalyzer.virusNames.add(lineArray[2]);
+                VirusAnalyzer.virusTypes.add(lineArray[3]);
                 line = br.readLine();
             }
                         
             br.close();
             
         } catch(FileNotFoundException e) {
-            return null;
+            return false;
         } catch(IOException e){
-            System.out.println("IO Exception");
-            return null;
+            System.out.println("IO Exception in FileHandler");
+            return false;
         }
         
-        return virusDefinitions;
+        return true;
     }
 }

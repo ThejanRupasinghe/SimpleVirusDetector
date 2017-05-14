@@ -26,8 +26,10 @@ NOTE :
    Source : https://virusshare.com/hashes.4n6
 
 *) EICAR (European Institute for Computer Antivirus Research) Standard Anti-Virus Test File
-   is included in "testvirus" folder.
+   can be downloaded from,
 
-   Source : https://www.ikarussecurity.com/support/virus-info/test-viruses/
+	https://www.ikarussecurity.com/fileadmin/user_upload/testviren/eicar_com.zip
+  
+   and tested on this virus detector.
 
 

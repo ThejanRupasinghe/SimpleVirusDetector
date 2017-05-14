@@ -24,7 +24,8 @@ public class FileHandler {
             (md5 checksum values of identified viruses) and returns an 
             ArrayList of them **/
         
-        String file_name = "/home/thejan/NetBeansProjects/VirusAnalyzer/src/virusanalyzer/virusDef.txt";
+        //to the virusDef.txt file in the VirusAnalyzer_140536K folder
+        String file_name = "virusDef.txt";
         
         ArrayList<String> virusDefinitions = new ArrayList<String>();
         
@@ -40,7 +41,6 @@ public class FileHandler {
             br.close();
             
         } catch(FileNotFoundException e) {
-            System.out.println("File not found");
             return null;
         } catch(IOException e){
             System.out.println("IO Exception");

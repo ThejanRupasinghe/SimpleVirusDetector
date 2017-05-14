@@ -38,15 +38,19 @@ public class VirusAnalyzer {
             FileHandler fh = new FileHandler();
             ArrayList<String> virusDefinitions = fh.readVirusDefinition();
             
-            //Taking the result of the analysis
-            boolean isVirus = logic.analyze(fileChecksum, virusDefinitions);
-            
-            if(isVirus){
-                System.out.println("Virus Detected !!");
-                JOptionPane.showMessageDialog(null, file.getName()+" file contains a virus.\nFile MD5: "+fileChecksum+"\nis found in virus definitions", "Virus Detected !!",JOptionPane.WARNING_MESSAGE);
+            if(virusDefinitions!=null){
+                //Taking the result of the analysis
+                boolean isVirus = logic.analyze(fileChecksum, virusDefinitions);
+
+                if(isVirus){
+                    System.out.println("Virus Detected !!");
+                    JOptionPane.showMessageDialog(null, file.getName()+" file contains a virus.\nFile MD5: "+fileChecksum+"\nis found in virus definitions", "Virus Detected !!",JOptionPane.WARNING_MESSAGE);
+                }else{
+                    System.out.println("Clean File !!");
+                    JOptionPane.showMessageDialog(null, file.getName()+" file doesnot contain a virus.\nFile MD5: "+fileChecksum+"\nis not found in virus definitions", "No Virus !!",JOptionPane.INFORMATION_MESSAGE);
+                }
             }else{
-                System.out.println("Clean File !!");
-                JOptionPane.showMessageDialog(null, file.getName()+" file doesnot contain a virus.\nFile MD5: "+fileChecksum+"\nis not found in virus definitions", "No Virus !!",JOptionPane.INFORMATION_MESSAGE);
+                System.out.println("virusDef.txt not found. Create virusDef.txt file with your virus definitions in this folder.");
             }
          
         } catch (Exception ex) {

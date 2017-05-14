@@ -20,8 +20,8 @@ To run the project :
 NOTE :
 ======
 
-*) "virusDef.txt" in "dist" folder contains 1000 md5 hashes of files which are
-   identified as viruses.
+*) "virusDef.txt" in "dist" folder contains 1000 md5 hashes of viruses and 
+   their names and virus types.
 
    Source : https://virusshare.com/hashes.4n6
 
